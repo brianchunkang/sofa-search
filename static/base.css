@@ -1,0 +1,156 @@
+/* Background */
+body {
+    background: url("./images/bg.jpg") no-repeat center center;
+    background-attachment: fixed;
+    background-size: cover !important;
+    
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.overlay-white {
+    background-color: rgba(255,255,255,0.65);
+    width: 600px;
+    height: 500px;
+    padding: 50px;
+    border-radius: 15px;
+    
+    border: 2px solid rgba(55,55,55,0.6);
+}
+
+.overlay-whiter {
+    background-color: rgba(255,255,255,0.8);
+}
+
+.expanded-medium {
+    width: 80%;
+    height: 80%;
+    padding: 0;
+}
+
+.expanded-full {
+    width: 95%;
+    height: 95%;
+    padding: 0;
+}
+
+/* Text */
+p, h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', serif;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+h4 {
+    font-size: 25px;
+}
+
+h3 {
+    font-size: 35px;
+}
+
+h2 {
+    font-size: 50px;
+}
+
+h1 {
+    font-size: 100px;
+}
+
+p {
+    font-size 15px;
+}
+
+/* Centering things */
+
+.center {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.column {
+    flex-direction: column !important;
+}
+
+.flex-full {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.margin-small {
+    margin: 2vh 2vw;
+}
+
+.margin-medium {
+    margin: 5vh 0;
+}
+
+.margin-large {
+    margin: 10vh 0;
+}
+
+/* Buttons */
+.btn {
+    color: rgba(0, 38, 66, 1);
+    background-color: rgba(240,240,240,1);
+}
+
+.btn-large {
+    border-radius: 20px;
+    padding: 10px 20px;
+    border: 2px solid rgba(0, 38, 66, 0.5);
+}
+
+.btn-medium {
+    border-radius: 10px;
+    padding: 10px 20px;
+    border: 1px solid rgba(0, 38, 66, 0.5);
+}
+
+.btn-small {
+    border-radius: 50%;
+    padding: 10px 20px;
+    border: 1px solid rgba(0, 38, 66, 0.5);
+}
+
+.btn:hover {
+    cursor: pointer;
+    background-color: rgba(200,200,200,1);
+}
+
+/* About */
+#aboutContent {
+    opacity: 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.appear {
+    opacity: 1;
+}
+
+.disappear {
+    opacity: 0;
+}
+
+/* Sofa */
+#sofaImage {
+    height: 400px;
+    width: 400px;
+}
+
+/* Animations */
+.transform {
+    transition: all 0.5s ease;
+}
