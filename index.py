@@ -34,8 +34,7 @@ threshold = 0.9
 lim = 5
 numImages = 0
 
-def display(img):
-	#img = (1+img)*255/2    
+def display(img):   
 	return Image.fromarray(img.squeeze().astype('uint8'), 'RGB')
 
 X_test = np.empty(shape=(target_width,target_height,3,0)) #needs optimization
@@ -54,7 +53,7 @@ model.add(MaxPooling2D(pool_size=(2,2)))
  
 model.add(Flatten())
 model.add(Dense(128))
-model.add(Dense(1))
+model.add(Dense(2))
 
 count = 0
 overallMax = 0
@@ -67,11 +66,8 @@ model.compile(loss='mean_squared_error',
 			  metrics=['accuracy'])
  
 # Fit model on training data
-def train(X,Y):
-	model.fit(X, Y, batch_size=1, nb_epoch=10)
-
-def getInput():
-	return input('Score: ')
+def train(X,Y, e):
+	model.fit(X, Y, batch_size=1, nb_epoch=e)
 
 @app.route('/',methods=['GET','POST'])
 def index():
@@ -90,7 +86,7 @@ def rating(num=-1):
 		for i in range(0,X_test.shape[3]):
 			if i not in list:
 				img = X_test[:,:,:,i]
-				score = model.evaluate(img[np.newaxis,...], np.zeros((1,1)), verbose=1)
+				score = model.evaluate(img[np.newaxis,...], np.zeros((1,2)), verbose=1)
 				if score > max_thing:
 					max_thing = score
 					X_train = img

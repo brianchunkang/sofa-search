@@ -20,10 +20,10 @@ for img in imgs:
 
     img_url = "http://www.ikea.com" + img_needed.img['src']
 
-    urlretrieve(img_url, os.path.basename("sofa_" + str(counter) + ".jpg"))
+    urlretrieve(img_url, os.path.basename("scraped-sofas\sofa_" + str(counter) + ".jpg"))
 
     counter += 1;
 
-    information.append({url2, soup2.find("div", {"class":"productName"}).decode_contents(formatter="html").strip()})
+    information.append({url2, img_url, soup2.find("div", {"class":"productName"}).decode_contents(formatter="html").strip()})
 
 print(information)
