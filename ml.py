@@ -8,7 +8,7 @@ import random
 from PIL import Image
 import glob
 
-path = "scraped-sofas/*"
+path = "sofa-folder/*.jpg"
 target_width = 64
 target_height = 64
 
@@ -21,22 +21,24 @@ def load_image( filename ):
 	pixels = np.resize(pixels, (im.height, im.width, 3, 1)) #need the extra dimension to stack later
 	return im, pixels
 
-im,_ = load_image('sofa-folder/sofa.jpg')
+im, X_test = load_image('sofa-folder/sofa.jpg')
 
 img_width = im.width
 img_height = im.height
+print(img_width)
+print(img_height)
 img_depth = 3
 threshold = 0.9
 lim = 20
 numImages = 0
 
 def display(img):
-	#img = (1+img)*255/2    
+	#img = (1+img)*255/2
+	print(img.shape)    
 	new = Image.fromarray(img.squeeze().astype('uint8'), 'RGB')
 	new.save('out.png')
 	new.show()
 
-X_test = np.empty(shape=(target_width,target_height,3,0)) #needs optimization
 for fname in glob.glob(path):
 	im, pixels = load_image(fname)
 	X_test = np.append(X_test, pixels, axis=3)
@@ -52,7 +54,8 @@ model.add(MaxPooling2D(pool_size=(2,2)))
  
 model.add(Flatten())
 model.add(Dense(128))
-model.add(Dense(1))
+model.add(Dense(2))
+model.add(Activation('softmax'))
 
 # Compile model
 model.compile(loss='mean_squared_error',
@@ -60,38 +63,35 @@ model.compile(loss='mean_squared_error',
 			  metrics=['accuracy'])
  
 # Fit model on training data
-def train(X,Y):
-	model.fit(X, Y, batch_size=1, nb_epoch=10, verbose=0)
+def train(X,Y,E):
+	model.fit(X, Y, batch_size=1, epochs=E*10)
+
+def userInput():
+	return int(input('Score: '))
 
 count = 0
 overallMax = 0
 overallImg = 0
-list = [None]*lim
-
-def getInput():
-	return input('Score: ')
 
 while count<lim:
 	display(X_train)
-	Y_train = np.full((1,1),getInput())
-	train(X_train[np.newaxis,...],Y_train)
+	score = userInput()
+	Y_train = np.zeros((1, 2))
+	Y_train[0, round(score/10)] = 1
+	#Y_train = np.full((1,1), input('Score: '))
+	train(X_train[np.newaxis,...],Y_train, score-5)
 	max_thing = 0
-	ind = 0
 	for i in range(0,X_test.shape[3]):
-		if i not in list:
-			img = X_test[:,:,:,i]
-			score = model.evaluate(img[np.newaxis,...], np.zeros((1,1)), verbose=0)
-			print(score)
-			if score>max_thing:
-				max_thing = score
-				X_train = img
-				ind = i
-			if score>overallMax:
-				overallMax = score
-				overallImg = img
+		img = X_test[:,:,:,i]
+		print(img.shape)
+		score = model.evaluate(img[np.newaxis,...], np.zeros((1,2)), verbose=1)
+		if score>max_thing:
+			max_thing = score
+			X_train = img
+		if score>overallMax:
+			overallMax = score
+			overallImg = img
 	if score>threshold:
 		display(X_train)
-	list[count] = ind
-	count = count+1
 
 display(overallImg)
