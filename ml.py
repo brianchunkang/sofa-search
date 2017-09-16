@@ -8,7 +8,7 @@ import random
 from PIL import Image
 import glob
 
-path = "sofa-folder/*.jpg"
+path = "scraped-sofas/*"
 target_width = 64
 target_height = 64
 
@@ -25,8 +25,6 @@ im, X_test = load_image('sofa-folder/sofa.jpg')
 
 img_width = im.width
 img_height = im.height
-print(img_width)
-print(img_height)
 img_depth = 3
 threshold = 0.9
 lim = 20
@@ -34,7 +32,6 @@ numImages = 0
 
 def display(img):
 	#img = (1+img)*255/2
-	print(img.shape)    
 	new = Image.fromarray(img.squeeze().astype('uint8'), 'RGB')
 	new.save('out.png')
 	new.show()
@@ -70,6 +67,7 @@ def userInput():
 	return int(input('Score: '))
 
 count = 0
+list = [None]*lim
 overallMax = 0
 overallImg = 0
 
@@ -77,16 +75,15 @@ while count<lim:
 	display(X_train)
 	score = userInput()
 	Y_train = np.zeros((1, 2))
-	Y_train[0, round(score/10)] = 1
+	Y_train[0, int(round(score/10,0))] = 1
 	#Y_train = np.full((1,1), input('Score: '))
 	train(X_train[np.newaxis,...],Y_train, score-5)
 	max_thing = 0
 	for i in range(0,X_test.shape[3]):
-<<<<<<< HEAD
 		if i not in list:
 			img = X_test[:,:,:,i]
-			score,_ = model.evaluate(img[np.newaxis,...], np.zeros((1,1)), verbose=0)
 			print(score)
+			score,_ = model.evaluate(img[np.newaxis,...], np.zeros((1,2)), verbose=0)
 			if score>max_thing:
 				max_thing = score
 				X_train = img
@@ -94,18 +91,9 @@ while count<lim:
 			if score>overallMax:
 				overallMax = score
 				overallImg = img
-=======
-		img = X_test[:,:,:,i]
-		print(img.shape)
-		score = model.evaluate(img[np.newaxis,...], np.zeros((1,2)), verbose=1)
-		if score>max_thing:
-			max_thing = score
-			X_train = img
-		if score>overallMax:
-			overallMax = score
-			overallImg = img
->>>>>>> 8ce673397321655798c68daefcc588b567f15f73
 	if score>threshold:
 		display(X_train)
+	list[count] = ind
+	count = count+1
 
 display(overallImg)
