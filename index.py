@@ -36,9 +36,7 @@ numImages = 0
 
 def display(img):
 	#img = (1+img)*255/2    
-	new = Image.fromarray(img.squeeze().astype('uint8'), 'RGB')
-	new.save('out.png')
-	new.show()
+	return Image.fromarray(img.squeeze().astype('uint8'), 'RGB')
 
 X_test = np.empty(shape=(target_width,target_height,3,0)) #needs optimization
 for fname in glob.glob(path):
@@ -58,6 +56,11 @@ model.add(Flatten())
 model.add(Dense(128))
 model.add(Dense(1))
 
+count = 0
+overallMax = 0
+overallImg = 0
+list = [None]*lim
+
 # Compile model
 model.compile(loss='mean_squared_error',
 			  optimizer='adam',
@@ -72,22 +75,14 @@ def getInput():
 
 @app.route('/',methods=['GET','POST'])
 def index():
-	if request.method=='POST':
-	else:
-        return render_template('sofa.html')
+    return render_template('sofa.html')
 
 @app.route('/submission/<num>', methods=['POST'])
 def rating(num=-1):
 	if num == -1:
 		break
-		
-	count = 0
-	overallMax = 0
-	overallImg = 0
-	list = [None]*lim
-
-	while count<lim:
-		display(X_train)
+	if count<lim:
+		return display(X_train)
 		Y_train = np.full((1,1),num)
 		train(X_train[np.newaxis,...],Y_train)
 		max_thing = 0
@@ -104,13 +99,12 @@ def rating(num=-1):
 					overallMax = score
 					overallImg = img
 		if score>threshold:
-			display(X_train)
+			return display(X_train)
 		list[count] = ind
 		count = count+1
-
-	display(overallImg)
+	else:
+		return display(overallImg)
 	
-
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port, debug=True)
