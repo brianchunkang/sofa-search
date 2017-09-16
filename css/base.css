@@ -1,0 +1,36 @@
+/* Text */
+
+h4 {
+    
+}
+
+h3 {
+    
+}
+
+h2 {
+    
+}
+
+h1 {
+    
+}
+
+p {
+    
+}
+
+
+/* Centering things */
+
+.center {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.column {
+    flex-direction: column;
+}
