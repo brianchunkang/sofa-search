@@ -20,19 +20,18 @@ target_height = 64
 img_depth = 3
 threshold = 0.9
 lim = 5
-numImages = 0
 
 # Returns pixel data as well as width
 def load_image( filename ):
     im = Image.open( filename )
     im = im.resize((target_width,target_height),Image.ANTIALIAS)
     pixels = np.asarray(im.getdata())
-    #pixels = pixels/255.0*2 - 1
+    pixels = pixels/255.0*2 - 1
     pixels = np.resize(pixels, (im.height, im.width, 3, 1)) #need the extra dimension to stack later
     return im, pixels
 
 def display(img):
-    return Image.fromarray(img.squeeze().astype('uint8'), 'RGB')
+    return Image.fromarray(((img+1)*255/2.0).squeeze().astype('uint8'), 'RGB')
  
 # Fit model on training data
 def train(X,Y, e):
@@ -47,11 +46,8 @@ def index():
 
     img_width = im.width
     img_height = im.height
-    
-    # Compile model
-    model.compile(loss='mean_squared_error',
-                  optimizer='adam',
-                  metrics=['accuracy'])
+
+    numImages = 0
 
     X_test = np.empty(shape=(target_width,target_height,3,0)) #needs optimization
     for fname in glob.glob(path):
@@ -70,6 +66,11 @@ def index():
     model.add(Flatten())
     model.add(Dense(128))
     model.add(Dense(2))
+
+    # Compile model
+    model.compile(loss='mean_squared_error',
+                  optimizer='adam',
+                  metrics=['accuracy'])
 
     count = 0
     overallMax = 0
