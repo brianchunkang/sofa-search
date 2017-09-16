@@ -11,7 +11,7 @@ body {
 }
 
 .overlay-white {
-    background-color: rgba(255,255,255,0.6);
+    background-color: rgba(255,255,255,0.65);
     width: 600px;
     height: 500px;
     padding: 50px;
@@ -87,7 +87,7 @@ p {
 }
 
 .margin-small {
-    margin: 2vh 0;
+    margin: 2vh 2vw;
 }
 
 .margin-medium {
@@ -99,8 +99,6 @@ p {
 }
 
 /* Buttons */
-
-
 .btn {
     color: rgba(0, 38, 66, 1);
     background-color: rgba(240,240,240,1);
@@ -114,6 +112,12 @@ p {
 
 .btn-medium {
     border-radius: 10px;
+    padding: 10px 20px;
+    border: 1px solid rgba(0, 38, 66, 0.5);
+}
+
+.btn-small {
+    border-radius: 50%;
     padding: 10px 20px;
     border: 1px solid rgba(0, 38, 66, 0.5);
 }
@@ -140,7 +144,13 @@ p {
     opacity: 0;
 }
 
+/* Sofa */
+#sofaImage {
+    height: 400px;
+    width: 400px;
+}
+
 /* Animations */
 .transform {
-    transition: all 1s ease;
+    transition: all 0.5s ease;
 }
