@@ -1,14 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hello World!</title>
+    <title>Sofa Search</title>
     <link rel="stylesheet" href="../static/base.css">
+    <script src="../static/jquery-3.1.1.js"></script>
+    <script src="../static/scripts.js"></script>
 </head>
-<body>
-<div>
-<p>
-    This is a test.
-</p>
+<body class="center">
+<div class="overlay-white center column transform">
+    <div id="welcomeContent" class="transform">
+        <h1 class="margin-small">Sofa Search</h1>
+        <h3 class="margin-medium">Tinder for sofas.</h3>
+        <div id="buttonStart" class="btn btn-large margin-small">
+            <h2>Begin</h2>
+        </div>
+        <div id="buttonAbout" class="btn btn-large margin-small">
+            <h2>About</h2>
+        </div>
+    </div>
+    <div id="aboutContent" class="hidden transform column flex-full">
+        <h2 id="aboutHeader">
+            About
+        </h2>
+        <h4 id="aboutText" class="margin-large">
+            
+            Authors: <br>
+            Aman Mathur <br>
+            Lawrence Pang <br>
+            Nicholas Vadivelu <br>
+            Victor Yu <br> <br>
+            
+            Hack the North 2017 Project <br> <br>
+            
+            Source code: <a href= https://github.com/n2cholas/hackthenorth2017>link</a>
+            
+        </h4>
+        <div id="buttonBack" class="btn btn-medium margin-small">
+            <h4>Back</h4>
+        </div>
+    </div>
 </div>
 </body>
 </html>
