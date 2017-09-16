@@ -49,4 +49,8 @@ $(document).ready(function() {
             }, transitionDelay1);
         }, transitionDelay2);
     });
+	
+	$(".btn-small").click(function() {
+		$(this).parent().submit(function(event){});
+	});
 });
