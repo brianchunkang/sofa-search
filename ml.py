@@ -1,18 +1,25 @@
 # Machine Learning Intial Work
-
 from keras.models import Sequential
 from keras.layers import Dense, Activation,Flatten
 from keras.layers import Convolution2D,MaxPooling2D
 from keras.utils import np_utils
 import numpy as np
 import random
-from imgprocessing import *
 from PIL import Image
 
-X_test = imgprocessing.load_image();
+#Returns pixel data as well as width 
+def load_image( filename ):
+    im = Image.open( filename )
+    pixels = np.asarray(im.getdata(), dtype=float)
+    pixels = pixels/255.0*2 - 1
+    pixels = np.resize(pixels, (im.width, im.height))
+    return im, pixels
 
-img_width = 128
-img_height = 128
+im, pixels = load_image('sofa-folder/sofa.jpg')
+show(im)
+
+img_width = im.width
+img_height = im.height
 img_depth = 3
 threshold = 0.9
 lim = 20
@@ -50,21 +57,22 @@ def display(img):
     new.show()
     
 def getInput:
-    return raw_input('Score: ')
+    return input('Score: ')
 
 count = 0
 overallMax = 0
 overallImg = 0
+
 while count<lim:
     display(X_train)
     Y_train = np.empty([1,1])
     np[0][0] = getInput()
     train(X_train,Y_train)
-    max = 0
+    max_thing = 0
     for img in X_test:
         score = model.evaluate(img, verbose=0)
-        if score>max:
-            max = score
+        if score>max_thing:
+            max_thing = score
             X_train = img
         if score>overallMax
             overallMax = score
