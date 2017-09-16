@@ -5,14 +5,21 @@ from keras.layers import Dense, Activation,Flatten
 from keras.layers import Convolution2D,MaxPooling2D
 from keras.utils import np_utils
 import numpy as np
+import random
+
+X_test = all_images;
 
 img_width = 128
 img_height = 128
+threshold = 0.9
+lim = 20
  
 # Format input data
-X_train = X_train.reshape(X_train.shape[0], 1, img_width, img_height)
-X_train = X_train.astype('float32')
- 
+for img in X_test:
+	img = img.reshape(img.shape[0], 1, img_width, img_height)
+	img = img.astype('float32')
+X_train = X_test[int(len(X_test)*random.random())]
+
 # Model Architecture
 model = Sequential()
 
@@ -30,8 +37,30 @@ model.compile(loss='categorical_crossentropy',
               metrics=['accuracy'])
  
 # Fit model on training data
-model.fit(X_train, Y_train, 
-          batch_size=1, nb_epoch=3, verbose=1)
- 
-# Evaluate model on test data
-score = model.evaluate(X_test, Y_test, verbose=0)
+def train(X,Y):
+	model.fit(X, Y, batch_size=1, nb_epoch=3, verbose=1)
+
+def display(img):
+	
+def getInput:
+
+count = 0
+overallMax = 0
+overallImg = 0
+while count<lim:
+	display(X_train)
+	Y_train = np.empty([1,1])
+	np[0] = getInput()
+	train(X_train,Y_train)
+	max = 0
+	for img in X_test:
+		score = model.evaluate(img, verbose=0)
+		if score>max:
+			max = score
+			X_train = img
+		if score>overallMax
+			overallMax = score
+			overallImg = img
+	if score>threshold
+		return X_train
+return overallImg
