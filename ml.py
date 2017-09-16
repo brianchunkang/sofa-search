@@ -8,7 +8,7 @@ import random
 from PIL import Image
 import glob
 
-path = "sofa-folder/*"
+path = "scraped-sofas/*"
 target_width = 64
 target_height = 64
 
@@ -27,7 +27,7 @@ img_width = im.width
 img_height = im.height
 img_depth = 3
 threshold = 0.9
-lim = 5
+lim = 20
 numImages = 0
 
 def display(img):
@@ -38,7 +38,6 @@ def display(img):
 
 X_test = np.empty(shape=(target_width,target_height,3,0)) #needs optimization
 for fname in glob.glob(path):
-	print(fname)
 	im, pixels = load_image(fname)
 	X_test = np.append(X_test, pixels, axis=3)
 	numImages = numImages + 1
@@ -62,7 +61,7 @@ model.compile(loss='mean_squared_error',
  
 # Fit model on training data
 def train(X,Y):
-	model.fit(X, Y, batch_size=1, nb_epoch=10)
+	model.fit(X, Y, batch_size=1, nb_epoch=10, verbose=0)
 
 count = 0
 overallMax = 0
@@ -81,7 +80,8 @@ while count<lim:
 	for i in range(0,X_test.shape[3]):
 		if i not in list:
 			img = X_test[:,:,:,i]
-			score = model.evaluate(img[np.newaxis,...], np.zeros((1,1)), verbose=1)
+			score = model.evaluate(img[np.newaxis,...], np.zeros((1,1)), verbose=0)
+			print(score)
 			if score>max_thing:
 				max_thing = score
 				X_train = img
