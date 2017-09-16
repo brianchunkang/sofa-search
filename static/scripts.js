@@ -6,10 +6,12 @@ $(document).ready(function() {
         setTimeout(function() {
             $("#welcomeContent").addClass("hidden");
             //show about
-            $(".overlay-white").addClass("expanded overlay-whiter");
-                
+            $(".overlay-white").addClass("expanded-medium overlay-whiter");
             $("#aboutContent").removeClass("hidden");
-            $("#aboutContent").css("opacity","1");
+                   
+            setTimeout(function() {
+                $("#aboutContent").css("opacity","1");
+            }, 800);
         }, 500);
     });
                   
@@ -19,11 +21,14 @@ $(document).ready(function() {
     $("#aboutContent").css("opacity","0");
 
         setTimeout(function() {
-             $("#aboutContent").addClass("hidden");
-             //show about
-             $(".overlay-white").removeClass("expanded overlay-whiter");
-             $("#welcomeContent").removeClass("hidden");
-             $("#welcomeContent").css("opacity","1");
+            $("#aboutContent").addClass("hidden");
+            //show about
+            $(".overlay-white").removeClass("expanded-medium overlay-whiter");
+            $("#welcomeContent").removeClass("hidden");
+                   
+            setTimeout(function() {
+                $("#welcomeContent").css("opacity","1");
+            }, 800);
         }, 500);
     });
                   
