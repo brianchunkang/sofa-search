@@ -16,3 +16,7 @@ requests==2.18.4
 requests-oauthlib==0.8.0
 urllib3==1.22
 Werkzeug==0.12.2
+numpy==1.13.1
+PIL==1.1.7
+keras==2.0.8
+tensorflow==1.2.1
