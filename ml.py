@@ -69,9 +69,12 @@ overallMax = 0
 overallImg = 0
 list = [None]*lim
 
+def getInput():
+	return input('Score: ')
+
 while count<lim:
 	display(X_train)
-	Y_train = np.full((1,1),input('Score: '))
+	Y_train = np.full((1,1),getInput())
 	train(X_train[np.newaxis,...],Y_train)
 	max_thing = 0
 	ind = 0
