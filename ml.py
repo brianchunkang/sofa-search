@@ -80,7 +80,7 @@ while count<lim:
 	for i in range(0,X_test.shape[3]):
 		if i not in list:
 			img = X_test[:,:,:,i]
-			score = model.evaluate(img[np.newaxis,...], np.zeros((1,1)), verbose=0)
+			score,_ = model.evaluate(img[np.newaxis,...], np.zeros((1,1)), verbose=0)
 			print(score)
 			if score>max_thing:
 				max_thing = score
