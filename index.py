@@ -59,6 +59,24 @@ def index():
 	global X_test
 	global model
 	# Machine Learning Witchcraft
+	path = "scraped-sofas/*"
+	target_width = 64
+	target_height = 64
+
+	img_depth = 3
+	threshold = 0.9
+	lim = 100
+	ind0 = 0
+
+	count = 0
+	overallMax = 0
+	overallImg = 0
+	overallInd = 0
+	list = [None]*lim
+
+	model = Sequential()
+	X_train = None
+	X_test = None
 	
 	# grab file dimensions
 	im,_ = load_image('scraped-sofas/sofa_0.jpg')
