@@ -11,11 +11,11 @@ body {
 }
 
 .overlay-white {
-    background-color: rgba(255,255,255,0.65);
+    background-color: rgba(255,255,255,0.75);
     width: 600px;
     height: 500px;
     padding: 50px;
-    border-radius: 15px;
+    /* border-radius: 15px; */
 }
 
 .overlay-whiter {
@@ -103,17 +103,17 @@ p {
 }
 
 .btn-large {
-    border-radius: 2px;
+    /*border-radius: 2px;*/
     padding: 10px 20px;
 }
 
 .btn-medium {
-    border-radius: 2px;
+    /*border-radius: 2px;*/
     padding: 10px 20px;
 }
 
 .btn-small {
-    border-radius: 50%;
+   /* border-radius: 50%; */
     padding: 10px 20px;
     border: 1px solid rgba(0, 38, 66, 0.5);
 }
