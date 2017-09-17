@@ -50,6 +50,10 @@ $(document).ready(function() {
         }, transitionDelay2);
     });
 	
+    $(".star-rating").click(function(e) {
+        alert('boop:' + e.target.value);
+    });
+                  
 	$(".btn-small").click(function() {
 		$(this).parent().submit(function(event){});
 	});
