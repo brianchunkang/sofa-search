@@ -78,8 +78,13 @@ def index():
 	model.add(Convolution2D(32, (8, 8), activation='relu', input_shape=(target_width,target_height,img_depth)))
 	model.add(Convolution2D(32, (8, 8), activation='relu'))
 	model.add(MaxPooling2D(pool_size=(2,2)))
+	
+	model.add(Convolution2D(32, (8, 8), activation='relu', input_shape=(target_width,target_height,img_depth)))
+	model.add(Convolution2D(32, (8, 8), activation='relu'))
+	model.add(MaxPooling2D(pool_size=(2,2)))
 
 	model.add(Flatten())
+	model.add(Dense(128))
 	model.add(Dense(128))
 	model.add(Dense(1))
 
