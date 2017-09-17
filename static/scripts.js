@@ -55,7 +55,8 @@ $(document).ready(function() {
     });
 	
     $(".star-rating").click(function(e) {
-        $.post("/submission/"+$(this).attr("value"), function(result){
+        $.post("/submission/"+$(this).attr("value"), function(result) {
+            $(":input").prop('checked',false);
             update(result);
         });
     });

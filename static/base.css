@@ -15,7 +15,8 @@ body {
     width: 400px;
     height: 400px;
     padding: 50px;
-    min-width: 300px;
+    
+    overflow: scroll;
 }
 
 .overlay-whiter {
@@ -24,12 +25,14 @@ body {
 
 .expanded-medium {
     width: 50%;
+    min-width: 400px;
     height: 80%;
     padding: 0;
 }
 
 .expanded-full {
     width: 50%;
+    min-width: 400px;
     height: 80%;
     padding: 0;
 }
