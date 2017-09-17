@@ -39,10 +39,11 @@ with open('Sofa Dictionary.txt','r') as file:
 # Returns pixel data as well as width
 def load_image(filename):
 	im = Image.open(filename)
-	pixels = im.resize((target_width,target_height),Image.ANTIALIAS)
+	im = im.resize((target_width,target_height),Image.ANTIALIAS)
 	pixels = np.asarray(im.getdata())
 	pixels = pixels/255.0*2 - 1
-	pixels = np.resize(pixels, (target_height, target_width, 3, 1)) #need the extra dimension to stack later
+	pixels.resize((target_width,target_height,3,1));
+	#pixels = pixels[...,np.newaxis]
 	return im, pixels
 
 def display(n):
@@ -50,7 +51,7 @@ def display(n):
  
 # Fit model on training data
 def train(X,Y,e):
-	model.fit(X, Y, batch_size=1, nb_epoch=e)
+	model.fit(X, Y, batch_size=1, nb_epoch=e, verbose=0)
 
 @app.route('/',methods=['GET','POST'])
 def index():
@@ -74,8 +75,8 @@ def index():
 	X_train = X_test[:,:,:,ind0]
 
 	# Model Architecture
-	model.add(Convolution2D(32, (3, 3), activation='relu', input_shape=(target_width,target_height,img_depth)))
-	model.add(Convolution2D(32, (3, 3), activation='relu'))
+	model.add(Convolution2D(32, (8, 8), activation='relu', input_shape=(target_width,target_height,img_depth)))
+	model.add(Convolution2D(32, (8, 8), activation='relu'))
 	model.add(MaxPooling2D(pool_size=(2,2)))
 
 	model.add(Flatten())
@@ -97,13 +98,13 @@ def rating(num):
 	global overallInd
 	if count<lim:
 		Y_train = np.full((1,1),num)
-		train(X_train[np.newaxis,...],Y_train,10)
+		train(X_train[np.newaxis,...],Y_train,20)
 		max_thing = 0
 		ind = 0
 		for i in range(0,X_test.shape[3]):
 			if i not in list:
 				img = X_test[:,:,:,i]
-				score = model.evaluate(img[np.newaxis,...], np.zeros((1,1)), verbose=1)
+				score,_ = model.evaluate(img[np.newaxis,...], np.zeros((1,1)), verbose=0)
 				if score > max_thing:
 					max_thing = score
 					X_train = img
