@@ -59,12 +59,6 @@ $(document).ready(function() {
             update(result);
         });
     });
-                  
-	$(".btn-small").click(function() {
-		$(this).parent().submit(function(data){
-			update(data);
-		});
-	});
 	
 	function update(str) {
 		var data = JSON.parse(str);
