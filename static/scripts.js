@@ -60,10 +60,10 @@ $(document).ready(function() {
 		});
 	});
 	
-	function update(data) {
-		console.log(data);
-		console.log(data.link);
-		$("#sofaImage").attr("src",data.img-link);
+	function update(str) {
+		var data = JSON.parse(str);
+		console.log(data["img-link"]);
+		$("#sofaImage").attr("src",data["img-link"]);
 		$("#viewProd").attr("href",data.link);
 	}
 });
