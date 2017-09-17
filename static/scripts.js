@@ -2,6 +2,10 @@ $(document).ready(function() {
                   
     var transitionDelay1 = 500;
     var transitionDelay2 = 500;
+	
+	$.post("/init",function(data){
+		update(data);
+	});
                   
     $("#buttonAbout").click(function() {
         
@@ -51,10 +55,23 @@ $(document).ready(function() {
     });
 	
     $(".star-rating").click(function(e) {
+        $.ajax({url: "/", success: function(result){
+            alert('beep:' + result);
+        }});
+                            
         alert('boop:' + e.target.value);
     });
                   
 	$(".btn-small").click(function() {
-		$(this).parent().submit(function(event){});
+		$(this).parent().submit(function(data){
+			update(data);
+		});
 	});
+	
+	function update(str) {
+		var data = JSON.parse(str);
+		console.log(data["img-link"]);
+		$("#sofaImage").attr("src",data["img-link"]);
+		$("#viewProd").attr("href",data.link);
+	}
 });
