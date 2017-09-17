@@ -11,13 +11,11 @@ body {
 }
 
 .overlay-white {
-    background-color: rgba(255,255,255,0.65);
+    background-color: rgba(255,255,255,0.75);
     width: 600px;
     height: 500px;
     padding: 50px;
-    border-radius: 15px;
-    
-    border: 2px solid rgba(55,55,55,0.6);
+    /* border-radius: 15px; */
 }
 
 .overlay-whiter {
@@ -38,7 +36,7 @@ body {
 
 /* Text */
 p, h1, h2, h3, h4 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Roboto';
     text-align: center;
     padding: 0;
     margin: 0;
@@ -57,7 +55,7 @@ h2 {
 }
 
 h1 {
-    font-size: 100px;
+    font-size: 80px;
 }
 
 p {
@@ -105,19 +103,17 @@ p {
 }
 
 .btn-large {
-    border-radius: 20px;
+    /*border-radius: 2px;*/
     padding: 10px 20px;
-    border: 2px solid rgba(0, 38, 66, 0.5);
 }
 
 .btn-medium {
-    border-radius: 10px;
+    /*border-radius: 2px;*/
     padding: 10px 20px;
-    border: 1px solid rgba(0, 38, 66, 0.5);
 }
 
 .btn-small {
-    border-radius: 50%;
+   /* border-radius: 50%; */
     padding: 10px 20px;
     border: 1px solid rgba(0, 38, 66, 0.5);
 }
