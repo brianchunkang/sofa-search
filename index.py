@@ -20,6 +20,7 @@ target_height = 64
 img_depth = 3
 threshold = 0.9
 lim = 5
+ind0 = 0
 
 imageData = ''
 with open('Sofa Dictionary.txt','r') as file:
@@ -56,7 +57,8 @@ def index():
 		X_test = np.append(X_test, pixels, axis=3)
 		numImages = numImages + 1
 
-	X_train = X_test[:,:,:,int(numImages*random.random())]
+	ind0 = int(numImages*random.random())
+	X_train = X_test[:,:,:,ind0]
 
 	# Model Architecture
 	model = Sequential()
@@ -106,6 +108,10 @@ def rating():
 		count = count+1
 	else:
 		return display(overallInd)
+	
+@app.route('/init', methods=['POST'])
+def init():
+	return display(ind0)
 	
 if __name__ == '__main__':
 	port = int(os.environ.get("PORT", 5000))
