@@ -55,11 +55,9 @@ $(document).ready(function() {
     });
 	
     $(".star-rating").click(function(e) {
-        $.ajax({url: "/", success: function(result){
-            alert('beep:' + result);
-        }});
-                            
-        alert('boop:' + e.target.value);
+        $.post("/submission/"+$(this).attr("value"), function(result){
+            update(result);
+        });
     });
                   
 	$(".btn-small").click(function() {

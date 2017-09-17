@@ -19,8 +19,18 @@ target_height = 64
 
 img_depth = 3
 threshold = 0.9
-lim = 5
+lim = 100
 ind0 = 0
+
+count = 0
+overallMax = 0
+overallImg = 0
+overallInd = 0
+list = [None]*lim
+
+model = Sequential()
+X_train = None
+X_test = None
 
 imageData = ''
 with open('Sofa Dictionary.txt','r') as file:
@@ -39,11 +49,14 @@ def display(n):
 	return json.dumps(imageData[n])
  
 # Fit model on training data
-def train(X,Y, e):
+def train(X,Y,e):
 	model.fit(X, Y, batch_size=1, nb_epoch=e)
 
 @app.route('/',methods=['GET','POST'])
 def index():
+	global X_train
+	global X_test
+	global model
 	# Machine Learning Witchcraft
 	
 	# grab file dimensions
@@ -61,39 +74,36 @@ def index():
 	X_train = X_test[:,:,:,ind0]
 
 	# Model Architecture
-	model = Sequential()
 	model.add(Convolution2D(32, (3, 3), activation='relu', input_shape=(target_width,target_height,img_depth)))
 	model.add(Convolution2D(32, (3, 3), activation='relu'))
 	model.add(MaxPooling2D(pool_size=(2,2)))
 
 	model.add(Flatten())
 	model.add(Dense(128))
-	model.add(Dense(2))
+	model.add(Dense(1))
 
 	# Compile model
 	model.compile(loss='mean_squared_error',
 				  optimizer='adam',
 				  metrics=['accuracy'])
-
-	count = 0
-	overallMax = 0
-	overallImg = 0
-	overallInd = 0
-	list = [None]*lim
 	return render_template('sofa.html')
 
 @app.route('/submission/<num>', methods=['POST'])
-def rating():
+def rating(num):
+	global count
+	global X_train
+	global overallMax
+	global overallImg
+	global overallInd
 	if count<lim:
-		return display(i)
 		Y_train = np.full((1,1),num)
-		train(X_train[np.newaxis,...],Y_train)
+		train(X_train[np.newaxis,...],Y_train,10)
 		max_thing = 0
 		ind = 0
 		for i in range(0,X_test.shape[3]):
 			if i not in list:
 				img = X_test[:,:,:,i]
-				score = model.evaluate(img[np.newaxis,...], np.zeros((1,2)), verbose=1)
+				score = model.evaluate(img[np.newaxis,...], np.zeros((1,1)), verbose=1)
 				if score > max_thing:
 					max_thing = score
 					X_train = img
@@ -102,10 +112,9 @@ def rating():
 					overallMax = score
 					overallImg = img
 					overallInd = i
-		if score>threshold:
-			return display(i)
 		list[count] = ind
 		count = count+1
+		return display(ind)
 	else:
 		return display(overallInd)
 	
