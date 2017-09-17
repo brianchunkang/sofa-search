@@ -15,7 +15,7 @@ body {
     width: 400px;
     height: 400px;
     padding: 50px;
-    /* border-radius: 15px; */
+    min-width: 300px;
 }
 
 .overlay-whiter {
@@ -42,20 +42,24 @@ p, h1, h2, h3, h4 {
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+}
+
 h4 {
-    font-size: 18px;
+    font-size: 22px;
 }
 
 h3 {
-    font-size: 35px;
+    font-size: 25px;
 }
 
 h2 {
-    font-size: 30px;
+    font-size: 35px;
 }
 
 h1 {
-    font-size: 60px;
+    font-size: 50px;
 }
 
 p {
@@ -84,6 +88,10 @@ p {
     justify-content: flex-start;
 }
 
+.margin-small-side {
+    margin: 0 2vw;
+}
+
 .margin-small {
     margin: 2vh 2vw;
 }
@@ -103,19 +111,11 @@ p {
 }
 
 .btn-large {
-    /*border-radius: 2px;*/
     padding: 10px 20px;
 }
 
 .btn-medium {
-    /*border-radius: 2px;*/
     padding: 10px 20px;
-}
-
-.btn-small {
-   /* border-radius: 50%; */
-    padding: 10px 20px;
-    border: 1px solid rgba(0, 38, 66, 0.5);
 }
 
 .btn:hover {
@@ -126,6 +126,8 @@ p {
 /* About */
 #aboutContent {
     opacity: 0;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .hidden {
@@ -141,12 +143,19 @@ p {
 }
 
 /* Sofa */
+#sofaContent {
+    opacity: 0;
+    max-height: 100%;
+    max-width: 100%;
+}
+
 #sofaImage {
-    height: 400px;
-    width: 400px;
+    height: 350px;
+    width: auto;
+    max-width: 95%;
 }
 
 /* Animations */
 .transform {
-    transition: all 0.5s ease;
+    transition: all 0.3s ease;
 }

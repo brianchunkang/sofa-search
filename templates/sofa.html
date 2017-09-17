@@ -9,8 +9,8 @@
     <script src="../static/scripts.js"></script>
 </head>
 <body class="center">
-<div class="overlay-white center column transform">
-    <div id="welcomeContent" class="transform">
+<div class="overlay-white center transform">
+    <div id="welcomeContent" class="center column transform">
         <h1 class="margin-small">Sofa Search</h1>
         <h3 class="margin-medium">Thousands of sofas out there. Find your match in 20. </h3>
         <div id="buttonStart" class="btn btn-large margin-small">
@@ -21,34 +21,34 @@
         </div>
     </div>
     
-    <div id="aboutContent" class="hidden transform column flex-full">
+    <div id="aboutContent" class="center column flex-full hidden transform ">
         <h2 id="aboutHeader" class="margin-small">
             About
         </h2>
         <h4 id="aboutText" class="margin-small">
             SofaSearch is an online tool that helps you search for your ideal sofa. <br>
-            Using TensorFlow machine learning, SofaSearch recommends you products in just a few clicks! <br> <br>
+            Using TensorFlow machine learning, SofaSearch recommends you products in just a few clicks! <br> <br> <br>
+            
+            Hack the North 2017 Project <br> <br> <br>
             
             Authors: <br>
             Lawrence Pang <br>
             Nicholas Vadivelu <br>
             Victor Yu <br> <br>
             
-            Hack the North 2017 Project <br> <br>
-            
-            Source code: <a href= https://github.com/n2cholas/hackthenorth2017>link</a>
+            <a href= https://github.com/n2cholas/hackthenorth2017>Source Code</a>
         </h4>
-        <div class="btn btn-medium btn-back margin-small">
+        <div class="btn btn-medium btn-back">
             <h4>Back</h4>
         </div>
     </div>
     
-    <div id="sofaContent" class="hidden transform column flex-full">
+    <div id="sofaContent" class="hidden transform column">
         <h2 id="aboutHeader" class="margin-medium">
             Sofa Recommendation
         </h2>
-        <img id="sofaImage" class="margin-small" src="../static/images/noImage.png"> </img>
-        <div class="center margin-small">
+        <img id="sofaImage" class="" src="../static/images/noImage.png"> </img>
+        <div class="center">
             <fieldset class="rate">
                 <input type="radio" id="rating10" class='star-rating' name="rating" value="10" /><label for="rating10" title="5 stars"></label>
                 <input type="radio" id="rating9" class='star-rating' name="rating" value="9" /><label class="half" for="rating9" title="4 1/2 stars"></label>
@@ -62,17 +62,16 @@
                 <input type="radio" id="rating1" class='star-rating' name="rating" value="1" /><label class="half" for="rating1" title="1/2 star"></label>
             </fieldset>
         </div>
-        <div class="center margin-small">
-            <div class="btn btn-medium btn-back margin-small">
+        <div class="center">
+            <div class="btn btn-medium btn-back">
                 <h4>Back</h4>
             </div>
             <a id="viewProd" href="#" target="_blank">
-				<div class="btn btn-medium margin-small">
+				<div class="btn btn-medium margin-small-side">
 					<h4>View Product</h4>
 				</div>
 			</a>
         </div>
-        
     </div>
 </div>
 </body>

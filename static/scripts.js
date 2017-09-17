@@ -1,7 +1,7 @@
 $(document).ready(function() {
                   
-    var transitionDelay1 = 500;
-    var transitionDelay2 = 500;
+    var transitionDelay1 = 300;
+    var transitionDelay2 = 600;
 	
 	$.post("/init",function(data){
 		update(data);
@@ -15,10 +15,10 @@ $(document).ready(function() {
             $("#welcomeContent").addClass("hidden");
             $(".overlay-white").addClass("expanded-medium overlay-whiter");
             $("#aboutContent").removeClass("hidden");
-                   
-            setTimeout(function() {
-                $("#aboutContent").css("opacity","1");
-            }, transitionDelay1);
+        }, transitionDelay1);
+        
+        setTimeout(function() {
+            $("#aboutContent").css("opacity","1");
         }, transitionDelay2);
     });
                   
@@ -30,10 +30,10 @@ $(document).ready(function() {
             $("#welcomeContent").addClass("hidden");
             $(".overlay-white").addClass("expanded-full");
             $("#sofaContent").removeClass("hidden");
-                   
-            setTimeout(function() {
-                $("#sofaContent").css("opacity","1");
-            }, transitionDelay1);
+        }, transitionDelay1);
+
+        setTimeout(function() {
+            $("#sofaContent").css("opacity","1");
         }, transitionDelay2);
     });
                   
@@ -43,14 +43,14 @@ $(document).ready(function() {
         $("#sofaContent").css("opacity","0");
 
         setTimeout(function() {
-        $("#aboutContent").addClass("hidden");
-        $("#sofaContent").addClass("hidden");
-        $(".overlay-white").removeClass("expanded-medium expanded-full overlay-whiter");
-        $("#welcomeContent").removeClass("hidden");
+            $("#aboutContent").addClass("hidden");
+            $("#sofaContent").addClass("hidden");
+            $(".overlay-white").removeClass("expanded-medium expanded-full overlay-whiter");
+            $("#welcomeContent").removeClass("hidden");
+        }, transitionDelay1);
 
         setTimeout(function() {
             $("#welcomeContent").css("opacity","1");
-            }, transitionDelay1);
         }, transitionDelay2);
     });
 	
