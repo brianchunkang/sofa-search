@@ -22,12 +22,12 @@ threshold = 0.9
 lim = 5
 
 # Returns pixel data as well as width
-def load_image( filename ):
-    im = Image.open( filename )
-    im = im.resize((target_width,target_height),Image.ANTIALIAS)
+def load_image(filename):
+    im = Image.open(filename)
+    pixels = im.resize((target_width,target_height),Image.ANTIALIAS)
     pixels = np.asarray(im.getdata())
     pixels = pixels/255.0*2 - 1
-    pixels = np.resize(pixels, (im.height, im.width, 3, 1)) #need the extra dimension to stack later
+    pixels = np.resize(pixels, (target_height, target_width, 3, 1)) #need the extra dimension to stack later
     return im, pixels
 
 def display(img):
@@ -44,9 +44,6 @@ def index():
     # grab file dimensions
     im,_ = load_image('scraped-sofas/sofa_0.jpg')
 
-    img_width = im.width
-    img_height = im.height
-
     numImages = 0
 
     X_test = np.empty(shape=(target_width,target_height,3,0)) #needs optimization
@@ -59,7 +56,7 @@ def index():
 
     # Model Architecture
     model = Sequential()
-    model.add(Convolution2D(32, (3, 3), activation='relu', input_shape=(img_width,img_height,img_depth)))
+    model.add(Convolution2D(32, (3, 3), activation='relu', input_shape=(target_width,target_height,img_depth)))
     model.add(Convolution2D(32, (3, 3), activation='relu'))
     model.add(MaxPooling2D(pool_size=(2,2)))
 
