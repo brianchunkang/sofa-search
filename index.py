@@ -36,7 +36,7 @@ def load_image(filename):
 	return im, pixels
 
 def display(n):
-	return imageData[n]
+	return json.dumps(imageData[n])
  
 # Fit model on training data
 def train(X,Y, e):

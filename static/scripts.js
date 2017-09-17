@@ -3,7 +3,7 @@ $(document).ready(function() {
     var transitionDelay1 = 500;
     var transitionDelay2 = 500;
 	
-	$post("/init",function(data){
+	$.post("/init",function(data){
 		update(data);
 	});
                   
@@ -60,8 +60,10 @@ $(document).ready(function() {
 		});
 	});
 	
-	update(data) {
-		$("#sofaImage").attr("src",data["img-link"]);
-		$("#viewProd").attr("href",data["img"]);
+	function update(data) {
+		console.log(data);
+		console.log(data.link);
+		$("#sofaImage").attr("src",data.img-link);
+		$("#viewProd").attr("href",data.link);
 	}
 });
