@@ -2,6 +2,10 @@ $(document).ready(function() {
                   
     var transitionDelay1 = 500;
     var transitionDelay2 = 500;
+	
+	$post("/init",function(data){
+		update(data);
+	});
                   
     $("#buttonAbout").click(function() {
         
@@ -51,6 +55,13 @@ $(document).ready(function() {
     });
 	
 	$(".btn-small").click(function() {
-		$(this).parent().submit(function(event){});
+		$(this).parent().submit(function(data){
+			update(data);
+		});
 	});
+	
+	update(data) {
+		$("#sofaImage").attr("src",data["img-link"]);
+		$("#viewProd").attr("href",data["img"]);
+	}
 });
