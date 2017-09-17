@@ -24,10 +24,6 @@ for img in imgs:
 
     counter += 1;
 
-    information.append({
-        "link": url2, 
-        "img-link": img_url, 
-        "name": soup2.find("div", {"class":"productName"}).decode_contents(formatter="html").strip()
-        })
+    information.append({url2, img_url, soup2.find("div", {"class":"productName"}).decode_contents(formatter="html").strip()})
 
 print(information)
