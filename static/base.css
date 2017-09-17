@@ -11,26 +11,26 @@ body {
 }
 
 .overlay-white {
-    background-color: rgba(255,255,255,0.75);
-    width: 600px;
-    height: 500px;
+    background-color: rgba(255,255,255,1);
+    width: 400px;
+    height: 400px;
     padding: 50px;
     /* border-radius: 15px; */
 }
 
 .overlay-whiter {
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255,255,255,1);
 }
 
 .expanded-medium {
-    width: 80%;
+    width: 50%;
     height: 80%;
     padding: 0;
 }
 
 .expanded-full {
-    width: 95%;
-    height: 95%;
+    width: 50%;
+    height: 80%;
     padding: 0;
 }
 
@@ -43,7 +43,7 @@ p, h1, h2, h3, h4 {
 }
 
 h4 {
-    font-size: 25px;
+    font-size: 18px;
 }
 
 h3 {
@@ -51,11 +51,11 @@ h3 {
 }
 
 h2 {
-    font-size: 50px;
+    font-size: 30px;
 }
 
 h1 {
-    font-size: 80px;
+    font-size: 60px;
 }
 
 p {
@@ -99,7 +99,7 @@ p {
 /* Buttons */
 .btn {
     color: rgba(0, 38, 66, 1);
-    background-color: rgba(240,240,240,1);
+    background-color: rgba(220,220,220,1);
 }
 
 .btn-large {

@@ -39,10 +39,10 @@ body {
 }
 /* Click + hover color */
 input:checked ~ label, /* color current and previous stars on checked */
-label:hover, label:hover ~ label { color: #0000AA;  } /* color previous stars on hover */
+label:hover, label:hover ~ label { color: #1A237E;  } /* color previous stars on hover */
 
 /* Hover highlights */
 input:checked + label:hover, input:checked ~ label:hover, /* highlight current and previous stars */
 input:checked ~ label:hover ~ label, /* highlight previous selected stars for new rating */
-label:hover ~ input:checked ~ label /* highlight previous selected stars */ { color: #00BB00;  }
+label:hover ~ input:checked ~ label /* highlight previous selected stars */ { color: #3F51B5;  }
 
