@@ -1,6 +1,6 @@
 # Sofa Search
 
-###### Why buy a sofa anywhere else?
+###### Thousands of sofas out there. Find your match in 20.
 
 SofaSearch is a web application that helps users look for their dream sofa 🛋.
 
@@ -13,7 +13,7 @@ Try me on Heroku! - http://sofa-search.herokuapp.com
 
 ## Tech Stack
 * Python + Flask backend
-* Machine learning tools TensorFlow + Keras
+* Machine learning tools Keras + Tensorflow
 * Web page designed with HTML, CSS (with CSS transitions), & jQuery
 
 ## Dependencies
